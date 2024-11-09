@@ -54,7 +54,36 @@ class newTax:
         label_date = tk.Label(date_frame, text="Date: ")
         label_date.pack(side="left", padx=(0, 10))
 
-
         self.show_date_button = ttk.Button(date_frame, text="", command=self.open_calendar)
         self.show_date_button.pack(pady=10)
         self.show_today_date()
+
+        label_meters = tk.Label(self.new_tax_window, text="Meter's readings", font=("Arial", 12, "bold"))
+        label_meters.pack(pady=10)
+
+        # Meters reading section
+
+
+
+        meters_frame = tk.Frame(self.new_tax_window)
+        meters_frame.pack(anchor="w", padx=5, pady=10)
+        label_electricity = tk.Label(meters_frame, text="Electricity readings:")
+        label_electricity.grid(row=0, column=0, pady=5, padx=10, sticky="w")  # Align to left
+
+        label_electricity_181 = tk.Label(meters_frame, text="1.8.0:")
+        label_electricity_181.grid(row=2, column=0, pady=5, padx=10, sticky="e")  # Align to left
+        label_electricity_from = tk.Label(meters_frame, text="From")
+        label_electricity_from.grid(row=1, column=1, pady=1)
+        electricity_from_entry_180 = tk.Entry(meters_frame)
+        electricity_from_entry_180.grid(row=2, column=1, pady=5, padx=(0, 10))
+        label_electricity_to = tk.Label(meters_frame, text="To")
+        label_electricity_to.grid(row=1, column=2, pady=1)
+        electricity_to_entry_180 = tk.Entry(meters_frame)
+        electricity_to_entry_180.grid(row=2, column=2, pady=5)  #
+
+        label_electricity_181 = tk.Label(meters_frame, text="1.8.1:")
+        label_electricity_181.grid(row=3, column=0, pady=5, padx=10, sticky="e")
+        electricity_from_entry_181 = tk.Entry(meters_frame)
+        electricity_from_entry_181.grid(row=3, column=1, pady=5, padx=(0, 10))
+        electricity_to_entry_181 = tk.Entry(meters_frame)
+        electricity_to_entry_181.grid(row=3, column=2, pady=5)
