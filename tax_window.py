@@ -11,7 +11,7 @@ class newTax:
 
         self.new_tax_window.bind("<Button-1>", self.close_calendar_if_open)
         self.create_widgets()
-        self.calendar = None
+        self.calendar = None # Kalendoriaus instancijos saugojimui
 
 
     def show_today_date(self):
@@ -31,10 +31,18 @@ class newTax:
         # Update the button text to the selected date
         self.show_date_button.config(text=selected_date)
     def close_calendar_if_open(self, event):
-        # Destroy the calendar if it exists when clicking outside
-        if self.calendar is not None:
-            self.calendar.destroy()
-            self.calendar = None  # Reset the calendar reference
+        if self.calendar:
+            # Get calendar coords
+            x1 = self.calendar.winfo_rootx()
+            y1 = self.calendar.winfo_rooty()
+            x2 = x1 + self.calendar.winfo_width()
+            y2 = y1 + self.calendar.winfo_height()
+
+            # PCheck if we push mouse button outside the calendar
+            if not (x1 <= event.x_root <= x2 and y1 <= event.y_root <= y2):
+                self.calendar.pack_forget()  # hide calendar
+                self.calendar = None
+                self.new_tax_window.unbind("<Button-1>")  # turn off mouse's button
     def create_widgets(self):
 
         custom_font = font.Font(size=12, weight="bold")
